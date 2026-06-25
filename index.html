@@ -1,0 +1,288 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPur - Free Online PDF & Image Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <span class="logo-text">Data<span class="logo-highlight">Pur</span></span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-toggle">
+                        All PDF Tools <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu mega-menu">
+                        <div class="mega-menu-grid">
+                            <div class="mega-col">
+                                <h4>Organize PDF</h4>
+                                <a href="#" onclick="navigateTo('merge')"><i class="fas fa-layer-group tool-icon merge"></i> Merge PDF</a>
+                                <a href="#" onclick="navigateTo('split')"><i class="fas fa-cut tool-icon split"></i> Split PDF</a>
+                                <a href="#" onclick="navigateTo('compress')"><i class="fas fa-compress-arrows-alt tool-icon compress"></i> Compress PDF</a>
+                                <a href="#" onclick="navigateTo('rotate')"><i class="fas fa-sync-alt tool-icon rotate"></i> Rotate PDF</a>
+                                <a href="#" onclick="navigateTo('resize-pdf')"><i class="fas fa-expand-arrows-alt tool-icon resize-pdf"></i> Resize PDF</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Image Tools</h4>
+                                <a href="#" onclick="navigateTo('compress-image')"><i class="fas fa-file-image tool-icon compress-img"></i> Compress Image</a>
+                                <a href="#" onclick="navigateTo('resize-image')"><i class="fas fa-crop-alt tool-icon resize-img"></i> Resize Image</a>
+                                <a href="#" onclick="navigateTo('jpg-to-pdf')"><i class="fas fa-image tool-icon jpg-pdf"></i> JPG to PDF</a>
+                                <a href="#" onclick="navigateTo('pdf-to-jpg')"><i class="fas fa-images tool-icon pdf-jpg"></i> PDF to JPG</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>Convert from PDF</h4>
+                                <a href="#" onclick="navigateTo('pdf-to-word')"><i class="fas fa-file-word tool-icon pdf-word"></i> PDF to Word</a>
+                                <a href="#" onclick="navigateTo('pdf-to-excel')"><i class="fas fa-file-excel tool-icon pdf-excel"></i> PDF to Excel</a>
+                                <a href="#" onclick="navigateTo('pdf-to-ppt')"><i class="fas fa-file-powerpoint tool-icon pdf-ppt"></i> PDF to PPT</a>
+                            </div>
+                            <div class="mega-col">
+                                <h4>PDF Security</h4>
+                                <a href="#" onclick="navigateTo('unlock')"><i class="fas fa-unlock tool-icon unlock"></i> Unlock PDF</a>
+                                <a href="#" onclick="navigateTo('protect')"><i class="fas fa-lock tool-icon protect"></i> Protect PDF</a>
+                                <a href="#" onclick="navigateTo('watermark')"><i class="fas fa-tint tool-icon watermark"></i> Watermark</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="btn-nav" onclick="showPricing()">
+                    <i class="fas fa-crown"></i> Premium
+                </button>
+                <button class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="container">
+            <h1 class="hero-title">
+                Every tool you need to work with
+                <span class="gradient-text">PDFs & Images</span>
+            </h1>
+            <p class="hero-subtitle">
+                Compress, resize, convert & manage your PDF and image files.
+                100% <strong>FREE</strong>, works in your browser — no upload needed!
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-count="50">0</span><span class="stat-suffix">M+</span>
+                    <span class="stat-label">Users Monthly</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="30">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Tools Available</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="100">0</span><span class="stat-suffix">%</span>
+                    <span class="stat-label">Free & Private</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="tools-section" id="tools">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom:40px">All Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card" onclick="navigateTo('compress')">
+                    <div class="tool-card-icon compress"><i class="fas fa-compress-arrows-alt"></i></div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size by 1%–99% with precise quality control slider.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('compress-image')">
+                    <div class="tool-card-icon compress-img"><i class="fas fa-file-image"></i></div>
+                    <h3>Compress Image</h3>
+                    <p>Compress JPG, JPEG, PNG images with exact % quality control.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('resize-pdf')">
+                    <div class="tool-card-icon resize-pdf"><i class="fas fa-expand-arrows-alt"></i></div>
+                    <h3>Resize PDF</h3>
+                    <p>Increase or decrease PDF file size to your exact target.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('resize-image')">
+                    <div class="tool-card-icon resize-img"><i class="fas fa-crop-alt"></i></div>
+                    <h3>Resize Image</h3>
+                    <p>Resize images to exact dimensions or target file size.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('merge')">
+                    <div class="tool-card-icon merge"><i class="fas fa-layer-group"></i></div>
+                    <h3>Merge PDF</h3>
+                    <p>Combine multiple PDFs into a single document.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('split')">
+                    <div class="tool-card-icon split"><i class="fas fa-cut"></i></div>
+                    <h3>Split PDF</h3>
+                    <p>Separate PDF pages or extract specific pages.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('pdf-to-word')">
+                    <div class="tool-card-icon pdf-word"><i class="fas fa-file-word"></i></div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert your PDFs to editable Word documents.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('pdf-to-jpg')">
+                    <div class="tool-card-icon pdf-jpg"><i class="fas fa-images"></i></div>
+                    <h3>PDF to JPG</h3>
+                    <p>Extract every page from your PDF as JPG images.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('jpg-to-pdf')">
+                    <div class="tool-card-icon jpg-pdf"><i class="fas fa-image"></i></div>
+                    <h3>JPG to PDF</h3>
+                    <p>Convert images to PDF document instantly.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('rotate')">
+                    <div class="tool-card-icon rotate"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Rotate PDF</h3>
+                    <p>Rotate your PDF pages the way you need.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('protect')">
+                    <div class="tool-card-icon protect"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Protect PDF</h3>
+                    <p>Password protect your PDF files.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('watermark')">
+                    <div class="tool-card-icon watermark"><i class="fas fa-tint"></i></div>
+                    <h3>Watermark</h3>
+                    <p>Stamp text or images over your PDFs.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('pdf-to-excel')">
+                    <div class="tool-card-icon pdf-excel"><i class="fas fa-file-excel"></i></div>
+                    <h3>PDF to Excel</h3>
+                    <p>Pull data from PDFs into Excel spreadsheets.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('pdf-to-ppt')">
+                    <div class="tool-card-icon pdf-ppt"><i class="fas fa-file-powerpoint"></i></div>
+                    <h3>PDF to PPT</h3>
+                    <p>Transform PDFs into PowerPoint presentations.</p>
+                </div>
+                <div class="tool-card" onclick="navigateTo('unlock')">
+                    <div class="tool-card-icon unlock"><i class="fas fa-unlock"></i></div>
+                    <h3>Unlock PDF</h3>
+                    <p>Remove PDF password protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span class="gradient-text">DataPur</span>?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Real Compression</h3>
+                    <p>Actual pixel-level re-rendering. PDFs compress 30-95%. Images compress 1-99%.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                    <h3>100% Private</h3>
+                    <p>All processing happens in YOUR browser. Files never leave your device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3>Precise Control</h3>
+                    <p>Slider from 1% to 100% quality. See file size change in real-time before download.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+                    <h3>Unlimited & Free</h3>
+                    <p>No limits, no sign-ups, no watermarks. Use as much as you want.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon"><i class="fas fa-database"></i></div>
+                        <span class="logo-highlight">Data<span class="logo-highlight">Pur</span></span>
+                    </a>
+                    <p>Making file management simple, fast, and private for everyone.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>PDF Tools</h4>
+                    <a href="#" onclick="navigateTo('compress')">Compress PDF</a>
+                    <a href="#" onclick="navigateTo('merge')">Merge PDF</a>
+                    <a href="#" onclick="navigateTo('split')">Split PDF</a>
+                    <a href="#" onclick="navigateTo('resize-pdf')">Resize PDF</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Image Tools</h4>
+                    <a href="#" onclick="navigateTo('compress-image')">Compress Image</a>
+                    <a href="#" onclick="navigateTo('resize-image')">Resize Image</a>
+                    <a href="#" onclick="navigateTo('pdf-to-jpg')">PDF to JPG</a>
+                    <a href="#" onclick="navigateTo('jpg-to-pdf')">JPG to PDF</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DataPur.com — All rights reserved by Ahammad Ali. Made with <i class="fas fa-heart" style="color:#e74c3c"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tool Overlay -->
+    <div class="tool-page-overlay" id="toolPageOverlay">
+        <div class="tool-page" id="toolPage"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-ring"></div>
+            <p id="loadingText">Processing your file...</p>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
